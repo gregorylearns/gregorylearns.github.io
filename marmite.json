@@ -1,10 +1,10 @@
 {
   "marmite_version": "0.2.5",
-  "posts": 1,
+  "posts": 2,
   "pages": 1,
-  "generated_at": "2025-05-31 16:36:17.032908697 +08:00",
-  "timestamp": 1748680577,
-  "elapsed_time": 0.054588559,
+  "generated_at": "2025-07-05 18:11:37.898034313 +08:00",
+  "timestamp": 1751710297,
+  "elapsed_time": 0.058556916,
   "config": {
     "name": "Home",
     "tagline": "",
