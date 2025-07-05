@@ -26,42 +26,17 @@ function createBoxplot() {
     var data = [{
         y: numbersArray,
         type: 'box',
-        name: 'Boxplot',
+        name: 'Scores',
+        // visible: 'legendonly',
         boxpoints: 'all',
-        jitter: 0.1,
-        pointpos: 0
-    }];
-
-    // Add a horizontal line representing the "Bar Value"
-    var shapes = [{
-        type: 'line',
-        x0: 0,
-        x1: 1,
-        y0: barValue,
-        y1: barValue,
-        xref: 'paper',
-        yref: 'y',
-        line: {
-            width: 2,
-            color: 'green'
+        jitter: 0.2,
+        pointpos: 2,
+        whiskerwidth: 0.5,
+        marker: {
+            size: 12,
+            opacity: 0.5
         }
     }];
-
-    // Layout configuration
-    var layout = {
-        title: {
-          text:plotTitle,
-          font: {
-            size: 24
-          },
-          xref: 'paper',
-          x: 0.5,
-        },
-        yaxis: {
-            range: [minValue, maxValue]
-        },
-        shapes: shapes // Add the horizontal line to the layout
-    };
 
     // Calculate statistics
     var mean = numbersArray.reduce((a, b) => a + b, 0) / numbersArray.length;
@@ -76,10 +51,61 @@ function createBoxplot() {
     var median = calculateQuartile(numbersArray, 0.5);
     var q3 = calculateQuartile(numbersArray, 0.75);
 
+
+
+    // Add a horizontal line representing the "Bar Value"
+    var shapes = [{
+        type: 'line',
+        x0: 0,
+        x1: 1,
+        y0: barValue,
+        y1: barValue,
+        xref: 'paper',
+        yref: 'y',
+        line: {
+            width: 2,
+            color: 'red'
+        }},
+        {
+        type: 'line',
+        x0: 0.20,
+        x1: 0.50,
+        y0: median,
+        y1: median,
+        xref: 'paper',
+        yref: 'y',
+        line: {
+            width: 2,
+            color: 'blue'}
+    }];
+
+    // Layout configuration
+    var layout = {
+        autosize: false,
+        width: 450,
+        height:600,
+        title: {
+          text:plotTitle,
+          font: {
+            size: 24
+          },
+          xref: 'paper',
+          x: 0.5,
+        },
+        yaxis: {
+            range: [minValue, maxValue]
+        },
+        xaxis: {
+            range: [0.35,0.75] // we're gonna hide the boxplot
+        },
+        shapes: shapes // Add the horizontal line to the layout
+        
+    };
+
     // Display statistics using Plotly annotations
     var annotations = [
         {
-            x: 0.1,
+            x: 0.0,
             y: maxValue,
             xref: 'paper',
             yref: 'y',
