@@ -18,7 +18,7 @@ function createBoxplot() {
 
     // Handle potential errors during parsing
     if (numbersArray.some(isNaN)) {
-        alert("Please enter valid numbers separated by commas.");
+        alert("Please enter valid numbers separated by commas, tabs, or spaces.");
         return;
     }
 
@@ -56,14 +56,14 @@ function createBoxplot() {
     // Add a horizontal line representing the "Bar Value"
     var shapes = [{
         type: 'line',
-        x0: 0,
-        x1: 1,
+        x0: 0.15,
+        x1: 0.55,
         y0: barValue,
         y1: barValue,
         xref: 'paper',
         yref: 'y',
         line: {
-            width: 2,
+            width: 1,
             color: 'red'
         }},
         {
@@ -75,7 +75,7 @@ function createBoxplot() {
         xref: 'paper',
         yref: 'y',
         line: {
-            width: 2,
+            width: 3,
             color: 'blue'}
     }];
 
@@ -105,16 +105,71 @@ function createBoxplot() {
     // Display statistics using Plotly annotations
     var annotations = [
         {
-            x: 0.0,
-            y: maxValue,
+            x: 0.05,
+            y: barValue + 1,
             xref: 'paper',
             yref: 'y',
-            text: 'Max: ' + highest + '<br>Q3: ' + q3.toFixed(2) + '<br>Median: ' + median.toFixed(2) + '<br>Q1: ' + q1.toFixed(2) + '<br>Min: ' + lowest + '<br>Count: ' + count + '<br>StdDev: ' + stdDev.toFixed(2),
+            text: 'Passing',
             showarrow: false,
             xanchor: 'left',
             align: 'left',
-            yanchor: 'top'
-        }
+            // yanchor: 'top'
+        },
+        {
+            x: 0.65,
+            y: highest,
+            xref: 'paper',
+            yref: 'y',
+            text: 'Max: ' + highest,
+            showarrow: false,
+            xanchor: 'left',
+            align: 'left',
+            // yanchor: 'top'
+        },
+        {
+            x: 0.65,
+            y: q3,
+            xref: 'paper',
+            yref: 'y',
+            text: 'Q3: ' + q3.toFixed(2),
+            showarrow: false,
+            xanchor: 'left',
+            align: 'left',
+            // yanchor: 'top'
+        },
+        {
+            x: 0.65,
+            y: median,
+            xref: 'paper',
+            yref: 'y',
+            text: 'Median: ' + median.toFixed(2),
+            showarrow: false,
+            xanchor: 'left',
+            align: 'left',
+            // yanchor: 'top'
+        },
+        {
+            x: 0.65,
+            y: q1,
+            xref: 'paper',
+            yref: 'y',
+            text: 'Q1: ' + q1.toFixed(2),
+            showarrow: false,
+            xanchor: 'left',
+            align: 'left',
+            // yanchor: 'top'
+        },
+        {
+            x: 0.65,
+            y: lowest,
+            xref: 'paper',
+            yref: 'y',
+            text: '<br>Min: ' + lowest + '<br>Count: ' + count + '<br>StdDev: ' + stdDev.toFixed(2),
+            showarrow: false,
+            xanchor: 'left',
+            align: 'left',
+            // yanchor: 'top'
+        },
     ];
 
     layout.annotations = annotations;
