@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jitter Plot Generator</title>
+    <link rel="stylesheet" type="text/css" href="jitterplot_generator_style.css">
+    <script src="jitterplot_generator_script.js"></script>
+    <script src="https://cdn.plot.ly/plotly-3.0.1.min.js" charset="utf-8"></script>
+</head>
+<body>
+    
+    <div id="input-container">
+        <h1>Jitter Plot Generator</h1>
+        <label for="plotTitle">Plot Title:</label>
+        <input type="text" id="plotTitle" name="plotTitle" value="My Jitter plot"><br><br>
+
+        <label for="numbers">Enter numbers (comma,tab,space-separated):</label><br>
+        <textarea id="numbers" name="numbers" rows="4" cols="50"></textarea><br><br>
+
+        <label for="maxValue">Maximum Value:</label>
+        <input type="text" id="maxValue" name="maxValue", value="100"><br><br>
+
+        <label for="minValue">Minimum Value:</label>
+        <input type="text" id="minValue" name="minValue", value="40"><br><br>
+
+        <label for="barValue">Bar Value:</label>
+        <input type="text" id="barValue" name="barValue" value="75"><br><br>
+
+        <button onclick="createBoxplot()">Create Jitter plot</button>
+    </div>
+
+    <div id="boxplot-container">
+        <div id="boxplot"></div>
+    </div>
+</html>
