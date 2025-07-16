@@ -11,6 +11,11 @@ function createBoxplot() {
     console.log("minValue:", minValue);
     var barValue = parseFloat(document.getElementById("barValue").value);
     console.log("barValue:", barValue);
+    // Data validation: Plot title cannot be empty
+    if (plotTitle.trim() === "") {
+        alert("Plot title cannot be empty.");
+        return;
+    }
 
     // Parse comma-separated numbers into an array of numbers
     var numbersArray = numbers.split(/[\s,\n\t]+/).map(parseFloat);
@@ -56,7 +61,7 @@ function createBoxplot() {
     // Add a horizontal line representing the "Bar Value"
     var shapes = [{
         type: 'line',
-        x0: 0.15,
+        x0: 0,
         x1: 0.55,
         y0: barValue,
         y1: barValue,
@@ -66,7 +71,7 @@ function createBoxplot() {
             width: 1,
             color: 'red'
         }},
-        {
+        { // Median
         type: 'line',
         x0: 0.20,
         x1: 0.50,
@@ -75,9 +80,32 @@ function createBoxplot() {
         xref: 'paper',
         yref: 'y',
         line: {
-            width: 3,
+            width: 2,
             color: 'blue'}
-    }];
+        },
+        { // Q3
+        type: 'line',
+        x0: 0.25,
+        x1: 0.45,
+        y0: q3,
+        y1: q3,
+        xref: 'paper',
+        yref: 'y',
+        line: {
+            width: 1,
+            color: 'blue'}},
+        { // Q1
+        type: 'line',
+        x0: 0.25,
+        x1: 0.45,
+        y0: q1,
+        y1: q1,
+        xref: 'paper',
+        yref: 'y',
+        line: {
+            width: 1,
+            color: 'blue'}}
+    ];
 
     // Layout configuration
     var layout = {
@@ -116,60 +144,39 @@ function createBoxplot() {
             // yanchor: 'top'
         },
         {
-            x: 0.65,
-            y: highest,
-            xref: 'paper',
-            yref: 'y',
-            text: 'Max: ' + highest,
-            showarrow: false,
-            xanchor: 'left',
-            align: 'left',
-            // yanchor: 'top'
-        },
-        {
-            x: 0.65,
+            x: 0.05,
             y: q3,
             xref: 'paper',
             yref: 'y',
-            text: 'Q3: ' + q3.toFixed(2),
+            text: 'Q3',
             showarrow: false,
             xanchor: 'left',
             align: 'left',
             // yanchor: 'top'
         },
         {
-            x: 0.65,
-            y: median,
-            xref: 'paper',
-            yref: 'y',
-            text: 'Median: ' + median.toFixed(2),
-            showarrow: false,
-            xanchor: 'left',
-            align: 'left',
-            // yanchor: 'top'
-        },
-        {
-            x: 0.65,
+            x: 0.05,
             y: q1,
             xref: 'paper',
             yref: 'y',
-            text: 'Q1: ' + q1.toFixed(2),
+            text: 'Q1',
             showarrow: false,
             xanchor: 'left',
             align: 'left',
             // yanchor: 'top'
         },
         {
-            x: 0.65,
-            y: lowest,
+            x: 0.75,
+            y: maxValue,
             xref: 'paper',
             yref: 'y',
-            text: '<br>Min: ' + lowest + '<br>Count: ' + count + '<br>StdDev: ' + stdDev.toFixed(2),
+            text: 'Max: ' + highest + '<br>Q3: ' + q3.toFixed(2) + '<br>Median: ' + median.toFixed(2) + '<br>Mean: ' + mean.toFixed(2) + 
+                '<br>Q1: ' + q1.toFixed(2) + '<br>Min: ' + lowest + '<br>Count: ' + count + '<br>sd: ' + stdDev.toFixed(2),
             showarrow: false,
             xanchor: 'left',
             align: 'left',
-            // yanchor: 'top'
-        },
+            yanchor: 'top'
+        }
     ];
 
     layout.annotations = annotations;
