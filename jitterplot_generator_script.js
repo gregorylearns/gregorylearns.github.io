@@ -182,7 +182,7 @@ function createBoxplot() {
     layout.annotations = annotations;
 
     // Render the plot
-    Plotly.newPlot('boxplot', data, layout);
+    Plotly.newPlot('boxplot', data, layout, {staticPlot: true});
     console.log("Plotly.newPlot() called");
 }
 

@@ -8,27 +8,29 @@
 </head>
 <body>
     
-    <div id="input-container">
-        <h1>Jitter Plot Generator</h1>
-        <label for="plotTitle">Plot Title:</label>
-        <input type="text" id="plotTitle" name="plotTitle" value="" required><br><br>
+    <div class="container">
+        <div id="input-container">
+            <h1>Jitter Plot Generator</h1>
+            <label for="plotTitle">Plot Title*:</label>
+            <input type="text" id="plotTitle" name="plotTitle" value="" required><br><br>
 
-        <label for="numbers">Enter numbers (comma,tab,space-separated):</label><br>
-        <textarea id="numbers" name="numbers" rows="4" cols="50"></textarea><br><br>
+            <label for="numbers">Enter numbers (comma,tab,space,newline-separated):</label><br>
+            <textarea id="numbers" name="numbers" rows="4" cols="50"></textarea><br><br>
 
-        <label for="maxValue">Maximum Value:</label>
-        <input type="text" id="maxValue" name="maxValue", value="100"><br><br>
+            <label for="maxValue">Maximum Value*:</label>
+            <input type="text" id="maxValue" name="maxValue", value="100" required><br><br>
 
-        <label for="minValue">Minimum Value:</label>
-        <input type="text" id="minValue" name="minValue", value="40"><br><br>
+            <label for="minValue">Minimum Value*:</label>
+            <input type="text" id="minValue" name="minValue", value="40" required><br><br>
 
-        <label for="barValue">Bar Value:</label>
-        <input type="text" id="barValue" name="barValue" value="75"><br><br>
+            <label for="barValue">Bar Value (Passing Score)*:</label>
+            <input type="text" id="barValue" name="barValue" value="" required><br><br>
+            <p>Fields with * are required.</p>
+            <button onclick="createBoxplot()">Create Jitter plot</button>
+        </div>
 
-        <button onclick="createBoxplot()">Create Jitter plot</button>
-    </div>
-
-    <div id="boxplot-container">
-        <div id="boxplot"></div>
+        <div id="boxplot-container">
+            <div id="boxplot"></div>
+        </div>
     </div>
 </html>
